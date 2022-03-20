@@ -14,6 +14,8 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: monospace;
+  font-size: 15px;
 }
 
 button {
@@ -27,11 +29,8 @@ button {
 /* typography */
 
 body {
-  font-family: monospace;
-  font-size: 15px;
-  line-height: 1.666rem;
   color: var(--light-mode-black);
-  background-color: var(--light-mode-light-gray);
+  background-color: #f2f2f2;
 }
 
 h1 {
@@ -64,7 +63,9 @@ h4 {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 1rem 2rem 1rem;
+  padding: 2rem 0 2rem 0;
+  margin: 0 auto;
+  width: 327px;
 }
 
 .light-mode-container {
@@ -103,6 +104,7 @@ h4 {
   color: var(--light-mode-navy);
   font-size: 0.866rem;
   line-height: 1.666rem;
+  text-align: center;
 }
 
 .search-icon {
@@ -122,4 +124,98 @@ h4 {
   height: 46px;
   border-radius: 15px;
   margin-left: auto;
+}
+
+/* user card */
+
+.user-card-container {
+  width: 327px;
+  height: 517px;
+  background-color: var(--light-mode-white);
+  padding: 2rem 1.5rem;
+  margin: 1rem auto 1rem auto;
+  border-radius: 15px;
+}
+
+.user-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  margin-right: 1.5rem;
+}
+
+.user-header-container {
+  display: flex;
+  align-items: center;
+}
+
+.full-name {
+  font-size: 1.066rem;
+  line-height: 1.58rem;
+}
+
+.username,
+.joined {
+  font-weight: initial;
+  font-size: 0.866rem;
+  line-height: 1.28rem;
+}
+
+.joined {
+  margin-top: 0.5rem;
+}
+
+.bio {
+  margin-top: 2rem;
+  font-size: 0.866rem;
+  line-height: 1.66rem;
+  color: var(--light-mode-navy);
+}
+
+.stat-container {
+  background-color: var(--light-mode-light-gray);
+  display: flex;
+  height: 85px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+
+.stat-item {
+  padding: 0 1rem;
+  margin: 0;
+}
+
+.stat-text {
+  font-size: 0.733rem;
+  line-height: 1.086rem;
+}
+
+.stat-num {
+  font-weight: bold;
+  font-size: 1.066rem;
+  line-height: 1.58rem;
+  margin-top: 0.5rem;
+}
+
+.details-container {
+  margin-top: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  padding: 0.5rem 0;
+}
+
+.detail-text {
+  margin-left: 1rem;
+  font-size: 0.866rem;
+  line-height: 1.283rem;
+  color: var(--light-mode-navy);
+}
+
+.location {
+  margin-left: calc(1rem + 6px);
 }
