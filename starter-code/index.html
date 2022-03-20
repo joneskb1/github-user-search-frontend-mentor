@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
-  <title>Frontend Mentor | GitHub user search app</title>
-</head>
-<body>
-
-  devfinder
-
-  Light
-  Dark
-
-  Search GitHub username...
-  Search
-
-  Joined
-
-  Repos
-  Followers
-  Following
-
-</body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+    <title>Frontend Mentor | GitHub user search app</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="logo">devfinder</h1>
+      <div class="light-mode-container">
+        <h4 class="light-mode-text">DARK</h4>
+        <img class="light-mode-image" src="assets/icon-moon.svg" alt="moon" />
+      </div>
+    </header>
+    <main>
+      <div class="search-container">
+        <img
+          class="search-icon"
+          src="assets/icon-search.svg"
+          alt="search icon"
+        />
+        <input
+          type="text"
+          placeholder="Search GitHub username…"
+          name="username"
+          class="username-input"
+        />
+        <button class="search-btn" type="submit">Search</button>
+      </div>
+    </main>
+    Search GitHub username... Search Joined Repos Followers Following
+  </body>
 </html>

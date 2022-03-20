@@ -1,0 +1,125 @@
+/* general */
+:root {
+  --bright-blue: #0079ff;
+  --light-mode-gray: #697c9a;
+  --light-mode-navy: #4b6a9b;
+  --light-mode-black: #2b3442;
+  --light-mode-light-gray: #f6f8ff;
+  --light-mode-white: #fefefe;
+  --dark-mode-white: #ffffff;
+  --dark-mode-navy: #1e2a47;
+  --dark-mode-black: #141d2f;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* typography */
+
+body {
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.666rem;
+  color: var(--light-mode-black);
+  background-color: var(--light-mode-light-gray);
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 1.733rem;
+  line-height: 2.533rem;
+  color: var(--light-mode-black);
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 1.466rem;
+  line-height: 2.2rem;
+  color: var(--light-mode-black);
+}
+
+h3 {
+  font-size: 1.066rem;
+  line-height: 1.6rem;
+  color: var(--bright-blue);
+}
+
+h4 {
+  font-size: 0.866rem;
+  line-height: 1.333rem;
+  color: var(--light-mode-navy);
+}
+
+/* header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem 2rem 1rem;
+}
+
+.light-mode-container {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.light-mode-image {
+  width: 20px;
+  height: 20px;
+  margin-left: 1rem;
+}
+
+/* search */
+.search-container {
+  width: 327px;
+  margin: 0 auto;
+  height: 60px;
+  background: var(--light-mode-white);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.466rem 0 0.466rem;
+}
+
+.username-input {
+  border: none;
+  padding: 0;
+  width: 195px;
+  height: 25px;
+}
+
+.username-input::placeholder {
+  font-family: monospace;
+  color: var(--light-mode-navy);
+  font-size: 0.866rem;
+  line-height: 1.666rem;
+}
+
+.search-icon {
+  width: 20.05px;
+  height: 20px;
+  margin-right: auto;
+}
+
+.search-btn {
+  background-color: var(--bright-blue);
+  color: white;
+  font-size: 0.933rem;
+  font-weight: bold;
+  line-height: 1.382rem;
+  font-family: monospace;
+  width: 84px;
+  height: 46px;
+  border-radius: 15px;
+  margin-left: auto;
+}
