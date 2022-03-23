@@ -41,6 +41,7 @@
           name="username"
           class="username-input"
         />
+        <p class="error">No results</p>
         <button class="search-btn" type="submit">Search</button>
       </div>
       <div class="user-card-container">
@@ -59,15 +60,15 @@
         <div class="stat-container">
           <div class="stat-item">
             <p class="stat-text">Repos</p>
-            <p class="stat-num">8</p>
+            <p class="stat-num repos">8</p>
           </div>
           <div class="stat-item">
             <p class="stat-text">Followers</p>
-            <p class="stat-num">3838</p>
+            <p class="stat-num followers">3838</p>
           </div>
           <div class="stat-item">
             <p class="stat-text">Following</p>
-            <p class="stat-num">9</p>
+            <p class="stat-num following">9</p>
           </div>
         </div>
         <div class="details-container">
@@ -76,6 +77,7 @@
               class="detail-icon"
               src="assets/icon-location.svg"
               alt="location marker"
+              data-detail-category="location"
             />
             <p class="detail-text location">San Francisco</p>
           </div>
@@ -84,24 +86,27 @@
               class="detail-icon"
               src="assets/icon-website.svg"
               alt="link icon"
+              data-detail-category="website"
             />
-            <p class="detail-text">https://github.blog</p>
+            <p class="detail-text website">https://github.blog</p>
           </div>
           <div class="detail-item twitter-div">
             <img
               class="detail-icon"
               src="assets/icon-twitter.svg"
               alt="twitter icon"
+              data-detail-category="twitter"
             />
-            <p class="detail-text">Not Available</p>
+            <p class="detail-text twitter">Not Available</p>
           </div>
           <div class="detail-item company-div">
             <img
               class="detail-icon"
               src="assets/icon-company.svg"
               alt="building icon"
+              data-detail-category="company"
             />
-            <p class="detail-text">@github</p>
+            <p class="detail-text company">@github</p>
           </div>
         </div>
       </div>
