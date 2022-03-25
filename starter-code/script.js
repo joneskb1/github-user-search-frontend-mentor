@@ -10,16 +10,16 @@ const repos = document.querySelector(".repos");
 const followers = document.querySelector(".followers");
 const following = document.querySelector(".following");
 const city = document.querySelector(".location");
-const website = document.querySelector(".website");
+const blog = document.querySelector(".blog");
 const company = document.querySelector(".company");
-const twitter = document.querySelector(".twitter");
-const detailIcons = document.querySelectorAll(".detail-icon");
+const twitter_username = document.querySelector(".twitter_username");
+const detailIcons = [...document.querySelectorAll(".detail-icon")];
 const body = document.querySelector("body");
 const cardContainer = document.querySelector(".user-card-container");
 const searchContainer = document.querySelector(".search-container");
 const statContainer = document.querySelector(".stat-container");
 const searchInput = document.querySelector(".username-input");
-
+const error = document.querySelector(".error");
 class FetchWrapper {
   constructor(baseURL) {
     this.baseURL = baseURL;
@@ -31,21 +31,140 @@ class FetchWrapper {
 }
 
 function searchUser(e) {
-  const user = new FetchWrapper(`https://api.github.com/users/`);
-  user.get(searchInput.value).then((data) => {
-    // format!
+  const API = new FetchWrapper(`https://api.github.com/users/`);
+  // show octocat on load & if empty search
+  const user = searchInput.value === "" ? "octocat" : searchInput.value;
+  // get user from the API
+  API.get(user).then((data) => {
+    console.log(data);
+
+    // error text if user not found
+    if (data.message === "Not Found") {
+      error.style.display = "block";
+      return;
+    } else {
+      error.style.display = "none";
+    }
+
     userImg.src = data.avatar_url;
-    fullName.textContent = data.name;
-    userName.textContent = data.login;
-    dateJoined.textContent = data.created_at;
-    bio.textContent = data.bio;
+
+    // show username for name if null
+    if (data.name === null) {
+      const name = data.login;
+      fullName.textContent = name;
+    } else {
+      fullName.textContent = data.name;
+    }
+
+    userName.textContent = `@${data.login}`;
+
+    // format joined date
+    const year = data.created_at.slice(0, 4);
+    let month = Number(data.created_at.slice(5, 7));
+    const day = data.created_at.slice(8, 10);
+    switch (month) {
+      case 01:
+        month = "Jan";
+        break;
+      case 02:
+        month = "Feb";
+        break;
+      case 03:
+        month = "March";
+        break;
+      case 04:
+        month = "April";
+        break;
+      case 05:
+        month = "May";
+        break;
+      case 06:
+        month = "June";
+        break;
+      case 07:
+        month = "July";
+        break;
+      case 08:
+        month = "Aug";
+        break;
+      case 09:
+        month = "Sep";
+        break;
+      case 10:
+        month = "Oct";
+        break;
+      case 11:
+        month = "Nov";
+        break;
+      case 12:
+        month = "Dec";
+        break;
+      default:
+        "";
+    }
+    dateJoined.textContent = `Joined ${day} ${month} ${year}`;
+
+    // bio
+    const bioText = data.bio === null ? "This profile has no bio" : data.bio;
+    bio.textContent = bioText;
+    // use diff color if in dark mode
+    if (data.bio === null) {
+      bio.classList.add("not-available-light");
+    } else {
+      bio.classList.remove("not-available-light");
+    }
+
+    // stat box
     repos.textContent = data.public_repos;
     followers.textContent = data.followers;
     following.textContent = data.following;
-    city.textContent = data.location;
-    website.textContent = data.blog;
-    twitter.textContent = data.twitter_username;
-    company.textContent = data.company;
+
+    // find null details
+    const nullIcons = [];
+    for (const key in data) {
+      if (key === "location" && data[key] === null) {
+        nullIcons.push(key);
+      }
+      if (key === "blog" && data[key] === "") {
+        nullIcons.push(key);
+      }
+      if (key === "twitter_username" && data[key] === null) {
+        nullIcons.push(key);
+      }
+      if (key === "company" && data[key] === null) {
+        nullIcons.push(key);
+      }
+    }
+
+    // set icons/text/color for N/A details
+    // change if dark mode
+    detailIcons.forEach((icon) => {
+      let el = document.querySelector(`.${icon.dataset.detailCategory}`);
+      if (nullIcons.includes(icon.dataset.detailCategory)) {
+        el.classList.add("not-available-light");
+        el.textContent = "Not available";
+        icon.src = `assets/icon-${icon.dataset.detailCategory}-light-NA.svg`;
+      } else {
+        el.classList.remove("not-available-light");
+        icon.src = `assets/icon-${icon.dataset.detailCategory}.svg`;
+
+        // format blog, company, twitter
+        if (icon.dataset.detailCategory === "company") {
+          if (data.company.startsWith("@")) {
+            data.company = data.company.slice(1);
+          }
+          const url = `https://github.com/${data.company}`;
+          el.innerHTML = `<a href="${url}">@${data.company}</a>`;
+        } else if (icon.dataset.detailCategory === "twitter_username") {
+          const url = `https://twitter.com/${data.twitter_username}`;
+          el.innerHTML = `<a href="${url}">@${data.twitter_username}</a>`;
+        } else if (icon.dataset.detailCategory === "blog") {
+          el.innerHTML = `<a href="${data.blog}">${data.blog}</a>`;
+        } else {
+          el.textContent = data[icon.dataset.detailCategory];
+        }
+      }
+    });
   });
 }
 
@@ -65,3 +184,5 @@ function removeActiveClass(e) {
 lightModeContainer.addEventListener("mouseover", addActiveClass);
 
 lightModeContainer.addEventListener("mouseout", removeActiveClass);
+
+window.addEventListener("load", searchUser);

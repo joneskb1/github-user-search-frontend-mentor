@@ -1,3 +1,5 @@
+/* fix widths for overflow content */
+
 /* general */
 :root {
   --bright-blue: #0079ff;
@@ -16,6 +18,12 @@
   box-sizing: border-box;
   font-family: "Space Mono", monospace;
   font-size: 15px;
+}
+
+/* change for dark */
+a {
+  color: var(--light-mode-navy);
+  text-decoration: none;
 }
 
 /* typography */
@@ -246,6 +254,12 @@ h4 {
   color: var(--light-mode-navy);
 }
 
+.blog,
+.company,
+.twitter_username {
+  cursor: pointer;
+}
+
 .location {
   margin-left: calc(1rem + 6px);
 }
@@ -433,7 +447,6 @@ h4 {
 
   .detail-item {
     padding: 1rem 0 1rem 0;
-    cursor: pointer;
   }
 }
 
@@ -441,12 +454,14 @@ h4 {
 
 .not-available-light {
   color: #a4b4cd;
+  cursor: initial;
 }
 
 /* dark mode */
 
 .not-available-dark {
   color: #8e95a3;
+  cursor: initial;
 }
 
 /* hover active light */
@@ -456,9 +471,17 @@ h4 {
     background-color: #60abff;
   }
 
-  .detail-item:hover,
-  .detail-item:active {
+  .blog:hover,
+  .blog:active,
+  .company:hover,
+  .company:active,
+  .twitter_username:hover,
+  .twitter_username:active {
     text-decoration: underline;
+  }
+
+  .not-available-light:hover {
+    text-decoration: none;
   }
 }
 
