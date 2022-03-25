@@ -1,5 +1,3 @@
-/* fix widths for overflow content */
-
 /* general */
 :root {
   --bright-blue: #0079ff;
@@ -368,7 +366,7 @@ h4 {
   }
 
   .detail-item {
-    width: 230px;
+    min-width: 230px;
   }
 
   .detail-text {
@@ -450,20 +448,6 @@ h4 {
   }
 }
 
-/* not available  */
-
-.not-available-light {
-  color: #a4b4cd;
-  cursor: initial;
-}
-
-/* dark mode */
-
-.not-available-dark {
-  color: #8e95a3;
-  cursor: initial;
-}
-
 /* hover active light */
 @media (hover: hover) and (pointer: fine) {
   .search-btn:hover,
@@ -485,10 +469,51 @@ h4 {
   }
 }
 
+/* light mode na & active */
+
+.not-available-light {
+  color: #a4b4cd;
+  cursor: initial;
+}
+
 .light-mode-text-active {
   color: #222731;
 }
 
 .light-mode-image-active {
   content: url("assets/icon-moon-active.svg");
+}
+
+/* dark mode */
+
+.dark-black {
+  background: var(--dark-mode-black);
+}
+
+.dark-navy {
+  background: var(--dark-mode-navy);
+}
+
+.dark-white-text {
+  color: white;
+}
+
+.dark-active {
+  color: #90a4d4;
+}
+
+.dark-sun {
+  content: url("assets/icon-sun.svg");
+}
+.dark-sun-active {
+  content: url("assets/icon-sun-active.svg");
+}
+
+.username-input-dark::placeholder {
+  color: white;
+}
+
+.not-available-dark {
+  color: #8e95a3;
+  cursor: initial;
 }

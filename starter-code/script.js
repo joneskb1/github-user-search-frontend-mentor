@@ -1,3 +1,6 @@
+// work on details icons/text for dark mode reg & NA
+
+const logo = document.querySelector(".logo");
 const lightModeContainer = document.querySelector(".light-mode-container");
 const lightModeText = document.querySelector(".light-mode-text");
 const lightModeImg = document.querySelector(".light-mode-image");
@@ -17,9 +20,14 @@ const detailIcons = [...document.querySelectorAll(".detail-icon")];
 const body = document.querySelector("body");
 const cardContainer = document.querySelector(".user-card-container");
 const searchContainer = document.querySelector(".search-container");
+const searchBtn = document.querySelector(".search-btn");
 const statContainer = document.querySelector(".stat-container");
 const searchInput = document.querySelector(".username-input");
 const error = document.querySelector(".error");
+const statText = [...document.querySelectorAll(".stat-text")];
+const statNum = [...document.querySelectorAll(".stat-num")];
+const detailText = [...document.querySelectorAll(".detail-text")];
+
 class FetchWrapper {
   constructor(baseURL) {
     this.baseURL = baseURL;
@@ -31,13 +39,12 @@ class FetchWrapper {
 }
 
 function searchUser(e) {
+  e.preventDefault();
   const API = new FetchWrapper(`https://api.github.com/users/`);
-  // show octocat on load & if empty search
+  // show octocat on load & if search empty
   const user = searchInput.value === "" ? "octocat" : searchInput.value;
   // get user from the API
   API.get(user).then((data) => {
-    console.log(data);
-
     // error text if user not found
     if (data.message === "Not Found") {
       error.style.display = "block";
@@ -104,14 +111,14 @@ function searchUser(e) {
     }
     dateJoined.textContent = `Joined ${day} ${month} ${year}`;
 
-    // bio
+    // bio validate
     const bioText = data.bio === null ? "This profile has no bio" : data.bio;
     bio.textContent = bioText;
-    // use diff color if in dark mode
     if (data.bio === null) {
       bio.classList.add("not-available-light");
     } else {
       bio.classList.remove("not-available-light");
+      bio.classList.remove("not-available-dark");
     }
 
     // stat box
@@ -138,6 +145,8 @@ function searchUser(e) {
 
     // set icons/text/color for N/A details
     // change if dark mode
+    // const darkModeOn = lightModeImg.classList.contains("dark-sun");
+
     detailIcons.forEach((icon) => {
       let el = document.querySelector(`.${icon.dataset.detailCategory}`);
       if (nullIcons.includes(icon.dataset.detailCategory)) {
@@ -165,24 +174,95 @@ function searchUser(e) {
         }
       }
     });
+
+    // clear input
+    searchInput.value = "";
   });
 }
 
-searchInput.addEventListener("change", searchUser);
+searchContainer.addEventListener("submit", searchUser);
 
 // toggle light mode colors on hover
 function addActiveClass(e) {
-  lightModeText.classList.add("light-mode-text-active");
-  lightModeImg.classList.add("light-mode-image-active");
+  // check if in dark mode
+  if (lightModeImg.classList.contains("dark-sun")) {
+    lightModeText.classList.add("dark-active");
+    lightModeImg.classList.add("dark-sun-active");
+  } else {
+    lightModeText.classList.add("light-mode-text-active");
+    lightModeImg.classList.add("light-mode-image-active");
+  }
 }
 
 function removeActiveClass(e) {
-  lightModeText.classList.remove("light-mode-text-active");
-  lightModeImg.classList.remove("light-mode-image-active");
+  // check if in dark mode
+  if (lightModeImg.classList.contains("dark-sun")) {
+    lightModeText.classList.remove("dark-active");
+    lightModeImg.classList.remove("dark-sun-active");
+  } else {
+    lightModeText.classList.remove("light-mode-text-active");
+    lightModeImg.classList.remove("light-mode-image-active");
+  }
+}
+
+// change text-img on light mode container
+function switchMode() {
+  // toggle dark mode classes
+  lightModeImg.classList.toggle("dark-sun");
+  logo.classList.toggle("dark-white-text");
+  searchContainer.classList.toggle("dark-navy");
+  cardContainer.classList.toggle("dark-navy");
+  body.classList.toggle("dark-black");
+  searchInput.classList.toggle("dark-navy");
+  searchInput.classList.toggle("dark-white-text");
+  statContainer.classList.toggle("dark-black");
+  searchInput.classList.toggle("username-input-dark");
+  fullName.classList.toggle("dark-white-text");
+  dateJoined.classList.toggle("dark-white-text");
+  bio.classList.toggle("dark-white-text");
+  statText.forEach((el) => el.classList.toggle("dark-white-text"));
+  statNum.forEach((el) => el.classList.toggle("dark-white-text"));
+  detailIcons.forEach(
+    (el) => (el.src = `assets/icon-${el.dataset.detailCategory}-dark.svg`)
+  );
+  detailText.forEach((el) => el.classList.toggle("dark-white-text"));
+
+  // check if in dark & change light mode text/icon
+  if (lightModeImg.classList.contains("dark-sun")) {
+    lightModeText.textContent = "LIGHT";
+    lightModeText.classList.add("dark-white-text");
+
+    // if bio is NA change text color & content
+    if (bio.textContent === "This profile has no bio") {
+      bio.classList.add("not-available-dark");
+    }
+
+    // change NA icons/text
+    // const detailsNA = detailText.filter(
+    //   (el) => el.textContent === "Not available"
+    // );
+
+    // detailsNA.forEach((el) => el.classList.add("not-available-dark"));
+
+    // detailIcons.forEach((el) => {
+    //   detailsNA.forEach((p) => {
+    //     if (p.classList.contains(el.dataset.detailCategory)) {
+    //       el.src = `assets/icon-${el.dataset.detailCategory}-dark-NA.svg`;
+    //     }
+    //   });
+    // });
+  } else {
+    lightModeText.textContent = "DARK";
+    lightModeText.classList.remove("dark-white-text");
+    lightModeImg.classList.remove("dark-sun-active");
+    lightModeText.classList.remove("dark-active");
+  }
 }
 
 lightModeContainer.addEventListener("mouseover", addActiveClass);
 
 lightModeContainer.addEventListener("mouseout", removeActiveClass);
+
+lightModeContainer.addEventListener("click", switchMode);
 
 window.addEventListener("load", searchUser);
