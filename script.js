@@ -306,8 +306,8 @@ function removeActiveLink(e) {
   e.currentTarget.classList.remove("underline");
 }
 
-links.addEventListener("touchstart", addActiveLink);
-links.addEventListener("touchend", removeActiveLink);
+links.forEach((el) => el.addEventListener("touchstart", addActiveLink));
+links.forEach((el) => el.addEventListener("touchend", removeActiveLink));
 
 // set octocat when loaded
 window.addEventListener("load", searchUser);
