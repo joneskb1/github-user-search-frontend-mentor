@@ -297,7 +297,7 @@ function removeActiveTouch() {
 }
 
 searchBtn.addEventListener("touchstart", addActiveTouch);
-searchBtn.addEventListener("touchend", addActiveTouch);
+searchBtn.addEventListener("touchend", removeActiveTouch);
 
 function addActiveLink(e) {
   e.currentTarget.classList.add("underline");
