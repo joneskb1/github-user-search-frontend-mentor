@@ -448,7 +448,7 @@ h4 {
   }
 }
 
-/* hover active light */
+/* hover active  */
 @media (hover: hover) and (pointer: fine) {
   .search-btn:hover,
   .search-btn:active {
@@ -464,7 +464,8 @@ h4 {
     text-decoration: underline;
   }
 
-  .not-available-light:hover {
+  .not-available-light:hover,
+  .not-available-dark:hover {
     text-decoration: none;
   }
 }
@@ -484,7 +485,7 @@ h4 {
   content: url("assets/icon-moon-active.svg");
 }
 
-/* dark mode */
+/* dark mode w/ na & active */
 
 .dark-black {
   background: var(--dark-mode-black);
