@@ -469,6 +469,16 @@ h4 {
   }
 }
 
+/* touch */
+
+.search-btn-active-touch {
+  background-color: #60abff;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 /* light mode na & active */
 
 .not-available-light {

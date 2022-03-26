@@ -21,7 +21,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: (https://github.com/joneskb1/github-user-search-frontend-mentor)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: (https://mellifluous-faun-6e8cc3.netlify.app/)
 
 ## Author
 

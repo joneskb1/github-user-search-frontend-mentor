@@ -24,6 +24,7 @@ const searchInput = document.querySelector(".username-input");
 const error = document.querySelector(".error");
 const statText = [...document.querySelectorAll(".stat-text")];
 const statNum = [...document.querySelectorAll(".stat-num")];
+const links = [...document.querySelectorAll("a.detail-text")];
 let nullItemsArr = [];
 
 class FetchWrapper {
@@ -286,6 +287,27 @@ lightModeContainer.addEventListener("mouseover", addActiveClass);
 lightModeContainer.addEventListener("mouseout", removeActiveClass);
 // change light mode
 lightModeContainer.addEventListener("click", switchMode);
+
+// touch events
+function addActiveTouch() {
+  searchBtn.classList.add("search-btn-active-touch");
+}
+function removeActiveTouch() {
+  searchBtn.classList.remove("search-btn-active-touch");
+}
+
+searchBtn.addEventListener("touchstart", addActiveTouch);
+searchBtn.addEventListener("touchend", addActiveTouch);
+
+function addActiveLink(e) {
+  e.currentTarget.classList.add("underline");
+}
+function removeActiveLink(e) {
+  e.currentTarget.classList.remove("underline");
+}
+
+links.addEventListener("touchstart", addActiveLink);
+links.addEventListener("touchend", removeActiveLink);
 
 // set octocat when loaded
 window.addEventListener("load", searchUser);
