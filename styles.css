@@ -87,6 +87,8 @@ h4 {
 }
 
 .light-mode-text {
+  font-size: 0.866rem;
+  line-height: 1.333rem;
   letter-spacing: 2.5px;
   color: var(--light-mode-gray);
 }
