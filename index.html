@@ -23,7 +23,7 @@
   <body>
     <header class="header">
       <h1 class="logo">devfinder</h1>
-      <div class="light-mode-container">
+      <div tabindex="0" class="light-mode-container">
         <h4 class="light-mode-text">DARK</h4>
         <img class="light-mode-image" src="assets/icon-moon.svg" alt="moon" />
       </div>
@@ -44,6 +44,7 @@
         <p class="error">No results</p>
         <button class="search-btn" type="submit">Search</button>
       </form>
+      <div class="loading-message hide"></div>
       <div class="user-card-container">
         <div class="user-header-container">
           <img class="user-img" alt="user photo" />

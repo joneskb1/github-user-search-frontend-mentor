@@ -25,6 +25,7 @@ const error = document.querySelector(".error");
 const statText = [...document.querySelectorAll(".stat-text")];
 const statNum = [...document.querySelectorAll(".stat-num")];
 const links = [...document.querySelectorAll("a.detail-text")];
+const loadingWait = document.querySelector(".loading-message");
 let nullItemsArr = [];
 
 class FetchWrapper {
@@ -109,12 +110,16 @@ function searchUser(e) {
   e.preventDefault();
   // reset nullItems
   nullItemsArr = [];
+  // show loading animation
+  loadingWait.classList.remove("hide");
 
   const API = new FetchWrapper(`https://api.github.com/users/`);
   // show octocat on load & if search empty
   const user = searchInput.value === "" ? "octocat" : searchInput.value;
   // get user from the API
   API.get(user).then((data) => {
+    // hide loading animation
+    loadingWait.classList.add("hide");
     // error text if user not found
     if (data.message === "Not Found") {
       error.style.display = "block";
@@ -252,7 +257,7 @@ function removeActiveClass(e) {
 }
 
 // change light mode
-function switchMode() {
+function switchMode(event) {
   // toggle dark mode classes
   lightModeImg.classList.toggle("dark-sun");
   logo.classList.toggle("dark-white-text");
@@ -287,6 +292,13 @@ lightModeContainer.addEventListener("mouseover", addActiveClass);
 lightModeContainer.addEventListener("mouseout", removeActiveClass);
 // change light mode
 lightModeContainer.addEventListener("click", switchMode);
+lightModeContainer.addEventListener("keyup", (e) => {
+  if (e.keyCode !== 13) {
+    return;
+  } else {
+    switchMode();
+  }
+});
 
 // touch events
 function addActiveTouch() {
