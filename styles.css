@@ -18,6 +18,10 @@
   font-size: 15px;
 }
 
+.attribution {
+  text-align: center;
+}
+
 a {
   color: var(--light-mode-navy);
   text-decoration: none;
