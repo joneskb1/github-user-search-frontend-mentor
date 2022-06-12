@@ -323,3 +323,12 @@ links.forEach((el) => el.addEventListener("touchend", removeActiveLink));
 
 // set octocat when loaded
 window.addEventListener("load", searchUser);
+
+
+
+// remove error text when input changes
+searchInput.addEventListener("input", () => {
+  if(searchInput.value === "" || error.style.display === "block") {
+    error.style.display = "none";
+  }
+})
