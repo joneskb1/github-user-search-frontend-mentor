@@ -123,7 +123,7 @@ function searchUser(e) {
     // error text if user not found
     if (data.message === "Not Found") {
       error.style.display = "block";
-      return;
+      throw new Error(data.message);
     } else {
       error.style.display = "none";
     }
@@ -227,7 +227,8 @@ function searchUser(e) {
     formatDetails();
     // clear input
     searchInput.value = "";
-  });
+  }).catch(error => 
+    console.log(error));
 }
 
 // search event
